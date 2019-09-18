@@ -1,0 +1,57 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Fuyuefan Fuyuefan, No, LIC=KIVDY-IS5W5-EYUVT-R87PV-67JGY-DFRVK
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.14.0.0
+Toolchain Path:  E:\keil\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DCM.DLL V1.13.1.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.14.0_KEIL
+Dialog DLL:      TCM.DLL V1.14.4.0
+ 
+<h2>Project:</h2>
+C:\Users\Fuyuefan\Desktop\uart1\USER\UART.uvprojx
+Project File Date:  09/13/2019
+
+<h2>Output:</h2>
+Build target 'UART'
+compiling main.c...
+main.c(26): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+                        strcpy(resp, USART_RX_BUF);
+main.c(57): warning:  #111-D: statement is unreachable
+        sprintf(buffer2,"%s%s\r\n",ssid,pswd);
+main.c(34): warning:  #177-D: variable "AT_CWMODE" was declared but never referenced
+        char* AT_CWMODE="AT+CWMODE=1\r\n";
+main.c(35): warning:  #177-D: variable "AT_RST" was declared but never referenced
+        char* AT_RST="AT+RST\r\n";
+main.c(36): warning:  #177-D: variable "AT_CWJAP" was declared but never referenced
+        char* AT_CWJAP="AT+RST\r\n";
+main.c(64): warning:  #177-D: variable "len" was declared but never referenced
+                u8 len; 
+main.c(65): warning:  #177-D: variable "times" was declared but never referenced
+                u16 times=0; 
+main.c: 7 warnings, 0 errors
+linking...
+Program Size: Code=8050 RO-data=562 RW-data=20 ZI-data=1948  
+FromELF: creating hex file...
+"..\OBJ\UART.axf" - 0 Error(s), 7 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\Fuyuefan\Desktop\uart1\USER\RTE
+  E:\keil\ARM\PACK\Keil\STM32F7xx_DFP\2.7.0
+
+<h2>Collection of Component Files used:</h2>
+</pre>
+</body>
+</html>
