@@ -27,25 +27,29 @@ Project File Date:  09/13/2019
 <h2>Output:</h2>
 Build target 'UART'
 compiling main.c...
-main.c(26): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+main.c(33): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
                         strcpy(resp, USART_RX_BUF);
-main.c(57): warning:  #111-D: statement is unreachable
-        sprintf(buffer2,"%s%s\r\n",ssid,pswd);
-main.c(34): warning:  #177-D: variable "AT_CWMODE" was declared but never referenced
+main.c(40): warning:  #177-D: variable "buffer2" was declared but never referenced
+        char buffer2[100];
+main.c(41): warning:  #177-D: variable "AT_CWMODE" was declared but never referenced
         char* AT_CWMODE="AT+CWMODE=1\r\n";
-main.c(35): warning:  #177-D: variable "AT_RST" was declared but never referenced
+main.c(42): warning:  #177-D: variable "AT_RST" was declared but never referenced
         char* AT_RST="AT+RST\r\n";
-main.c(36): warning:  #177-D: variable "AT_CWJAP" was declared but never referenced
+main.c(43): warning:  #177-D: variable "AT_CWJAP" was declared but never referenced
         char* AT_CWJAP="AT+RST\r\n";
-main.c(64): warning:  #177-D: variable "len" was declared but never referenced
+main.c(44): warning:  #550-D: variable "len" was set but never used
+        u8 len;
+main.c(110): warning:  #223-D: function "uart1_init" declared implicitly
+                uart1_init(921600);                     //´®¿Ú³õÊ¼»¯
+main.c(104): warning:  #177-D: variable "len" was declared but never referenced
                 u8 len; 
-main.c(65): warning:  #177-D: variable "times" was declared but never referenced
+main.c(105): warning:  #177-D: variable "times" was declared but never referenced
                 u16 times=0; 
-main.c: 7 warnings, 0 errors
+main.c: 9 warnings, 0 errors
 linking...
-Program Size: Code=8050 RO-data=562 RW-data=20 ZI-data=1948  
+Program Size: Code=7838 RO-data=562 RW-data=20 ZI-data=1948  
 FromELF: creating hex file...
-"..\OBJ\UART.axf" - 0 Error(s), 7 Warning(s).
+"..\OBJ\UART.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   C:\Users\Fuyuefan\Desktop\uart1\USER\RTE

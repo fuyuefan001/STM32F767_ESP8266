@@ -58,7 +58,7 @@ UART_HandleTypeDef UART1_Handler; //UART句柄
 
 //初始化IO 串口1 
 //bound:波特率
-void uart_init(u32 bound)
+void uart1_init(u32 bound)
 {	
 	//UART 初始化设置
 	UART1_Handler.Instance=USART1;					    //USART1

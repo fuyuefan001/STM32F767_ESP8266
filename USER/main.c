@@ -20,7 +20,14 @@
 ************************************************/
 u8 listenResp(char* resp){
 	u8 len=0;	
-	while(! (USART_RX_STA&0x8000));
+		u32 timeout=0;
+  u32 maxDelay=0x1FFFF;
+	while(! (USART_RX_STA&0x8000))	{
+        timeout++;////超时处理
+        if(timeout>maxDelay){
+					//return 0;
+				}
+	}
 		{					   
 			len=USART_RX_STA&0x3fff;//得到此次接收到的数据长度
 			strcpy(resp, USART_RX_BUF);
@@ -29,34 +36,67 @@ u8 listenResp(char* resp){
 	}
 	return len;
 }
-int esp8266config_translink(char* ssid, char* pswd){
+int esp8266config_translink(char* ssid, char* pswd,int port){
 	char buffer2[100];
 	char* AT_CWMODE="AT+CWMODE=1\r\n";
 	char* AT_RST="AT+RST\r\n";
 	char* AT_CWJAP="AT+RST\r\n";
 	u8 len;
 	char resp[200];
-	while(1){
+
+	
+		
 		printf("AT+RST\r\n");
 		len=listenResp(resp);
-		printf("%s\r\n",resp);
-		printf("%d\r\n",len);
-		delay_ms(10);
-	}
-    
-	// delay_ms(1000);
-	// printf("AT+CIPMODE=1\r\n");
-	// delay_ms(4000);
-	// printf("AT+CIPSTART=\"TCP\",\"139.199.176.32\",8080\r\n");
-	// delay_ms(4000);
-	// printf("AT+CIPSEND\r\n");
-	// delay_ms(4000);
+			if(strcmp(resp,"OK")==0){
+				LED1(0);
+			}
+			if(strcmp(resp,"ERROR")==0){
+				LED0(0);
+			}			
+		
+		//printf("%s\r\n",resp);
+		//printf("%d\r\n",len);
+		delay_ms(1000);
+		LED0(1);		
+		LED1(1);
+		
+				printf("xxxxx\r\n");
+		len=listenResp(resp);
 
-
-
-	sprintf(buffer2,"%s%s\r\n",ssid,pswd);
-	delay_ms(10);
-	HAL_UART_Transmit(&UART1_Handler,(uint8_t*)buffer2,strlen(buffer2),1000);
+			if(strcmp(resp,"OK")==0){
+				LED1(0);
+			}
+			if(strcmp(resp,"ERROR")==0){
+				LED0(0);
+			}			
+		
+		//printf("%s\r\n",resp);
+		//printf("%d\r\n",len);
+		delay_ms(1000);
+		LED0(1);		
+		LED1(1);
+		
+		
+		
+		//LED1(1);
+		//printf("AT+CIPMODE=1\r\n");
+		//len=listenResp(resp);
+		//printf("%s\r\n",resp);
+		//printf("%d\r\n",len);
+		//LED1(0);
+		//delay_ms(1000);
+		
+		
+		//LED1(1);
+		//printf("AT+CIPSTART=\"TCP\",\"139.199.176.32\",%d\r\n",port);
+		//len=listenResp(resp);
+		//printf("%s\r\n",resp);
+		//printf("%d\r\n",len);
+		//LED1(0);
+		//delay_ms(5000);
+		
+	
 	return 0;
 }
 int main(void)
@@ -67,24 +107,8 @@ int main(void)
     HAL_Init();				        //初始化HAL库
     Stm32_Clock_Init(432,25,2,9);   //设置时钟,216Mhz 
     delay_init(216);                //延时初始化
-		uart_init(115200);		        //串口初始化
+		uart1_init(921600);		        //串口初始化
     LED_Init();                     //初始化LED
-	esp8266config_translink("aaaa", "bbbb");
-    // while(1){
-    //    if(USART_RX_STA&0x8000)
-	// 	{					   
-	// 		len=USART_RX_STA&0x3fff;//得到此次接收到的数据长度
-	// 		printf("\r\n您发送的消息为:\r\n");
-	// 		HAL_UART_Transmit(&UART1_Handler,(uint8_t*)USART_RX_BUF,len,1000);	//发送接收到的数据
-	// 		while(__HAL_UART_GET_FLAG(&UART1_Handler,UART_FLAG_TC)!=SET);		//等待发送结束
-	// 		printf("\r\n\r\n");//插入换行
-	// 		USART_RX_STA=0;
-	// 	}else
-	// 	{
-	// 		times++;
-	// 		if(times%200==0);
-	// 		// if(times%30==0)LED0_Toggle;//闪烁LED,提示系统正在运行.
-	// 		delay_ms(10);   
-	// 	}
-	// }
+	esp8266config_translink("aaaa", "bbbb",8080);
+
 }
